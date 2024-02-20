@@ -36,7 +36,7 @@
 
     }
 
-    DB::insertData();
+6    DB::insertData();
 
     $db = new DB;
 
