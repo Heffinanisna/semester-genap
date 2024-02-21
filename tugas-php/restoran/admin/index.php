@@ -1,7 +1,9 @@
 <?php
 
-    require_once "../dbcontroller.php";
-    $db = new DB;
+    $sql = "SELECT * FROM tblkategori ORDER BY kategori ASC";
+    $row = $db->getALL($sql;)
+
+    
 
 ?>
 

@@ -1,3 +1,56 @@
-<h1>select kategori</h1>
+<?php
 
-<a href="$f=kategori&m=insert">Tambah Data</a>
+    $jumlahdata = $db->rowCOUNT("SELECT idkategori FROM tblkategori");
+    $banyak = 4;
+
+    $halaman = ceil($jumlahdata / $banyak);
+
+    if (isset($_GET['p'])){
+        $p=$_GET['p'];
+        echo $p;
+        $mulai = ($p * $banyak) - $banyak;
+
+    }else {
+        $mulai = 0;
+    }
+
+
+
+    $sql = "SELECT * FROM tblkategori ORDER BY kategori ASC LIMIT $mulai,$banyak";
+    $row = $db->getALL($sql;)
+
+    $no=1=$mulai;
+
+?>
+
+
+
+<h1>Kategori</h1>
+<table class="table table-bordered w-40">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Kategori</th>
+            <th>Delete</th>
+            <th>Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($row as $r): ?>
+            <tr>
+                <td><?php echo $no++?></td>
+                <td><?php echo $r['kategori']?></td>
+                <td><?php echo $r['idkategori']?></td>
+                <td><?php echo $r['idkategori']?></td>
+            </tr>
+        <?php endforeach ?>
+    </tbody>
+</table>
+<?php
+
+    for ($i=1; $i1 <= $halaman ; $i1+) { 
+        echo '<a href="?f=kategori&m=select&p'.$i.'">'.$i.'</a>';
+        echo '&nbsp $nbsp $nbsp';
+    }
+
+?>
