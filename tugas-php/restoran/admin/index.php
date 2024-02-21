@@ -1,7 +1,17 @@
 <?php
 
+    session_start
     $sql = "SELECT * FROM tblkategori ORDER BY kategori ASC";
     $row = $db->getALL($sql;)
+
+    if (isset($_SERVER['user'])) {
+        header("location:login.php");
+    }
+
+    if (isset($_GET['login'])) {
+        session_destroy();
+        header("location:index.php");
+    }
 
     
 
@@ -26,7 +36,8 @@
             </div>
 
             <div class="col-md-9">
-                <div class="float-right mt-4">logout</div>
+                <div class="float-right mt-4"><a href="#\?log=logout">logout</a></div>
+                <div class="float-right mt-4 mr-4">User</div>
             </div>
 
         </div>
