@@ -65,6 +65,7 @@
                    <div class="float-right mt-4"><a href="?log=logout">logout</a></div>
                    <div class="float-right mt-4 mr-4">Pelanggan : '.$_SESSION['pelanggan'].'</div>
                    <div class="float-right mt-4 mr-4">Cart : (<a href="?f=home&m=beli">'.cart().'</a>)</div>
+                   <div class="float-right mt-4 mr-4">Cart : <a href="?f=home&m=histori"> Histori </a> </div>
                    '; 
                 }else{
                     echo'
