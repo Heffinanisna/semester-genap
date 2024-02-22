@@ -6,7 +6,12 @@
 
     $sql = "SELECT * FROM tblkategori ORDER BY kategori";
     $row = $db->getALL($sql);
-    var_dump($row);
+    
+
+    if (isset($_GET['log'])) {
+        session_destroy();
+        header("location:index.php");
+    }
 
 
 ?>
@@ -35,12 +40,12 @@
             
                 if (isset($_SESSION['pelanggan'])) {
                    echo '
-                   <div class="float-right mt-4">logout</div>
-                   <div class="float-right mt-4 mr-4">Pelanggan</div>
+                   <div class="float-right mt-4"><a href="?log=logout">logout</a></div>
+                   <div class="float-right mt-4 mr-4">Pelanggan : '.$_SESSION['pelanggan'].'</div>
                    '; 
                 }else{
                     echo'
-                    <div class="float-right mt-4">login</div>
+                    <div class="float-right mt-4"><a href="?f=home&m=login">login</a></div>
                     <div class="float-right mt-4 mr-4"><a href="?f=home&m=daftar">Daftar</a></div>
                     ';
                 }
