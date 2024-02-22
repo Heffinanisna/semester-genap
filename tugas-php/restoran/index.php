@@ -13,6 +13,28 @@
         header("location:index.php");
     }
 
+    functioncart(){
+
+        global $db;
+    
+            foreach ($_SESSION as $key => $value) {
+                if ($key<> 'pelanggan' && $key>='pelanggan') {
+                $id = substr($key,1);
+    
+                $sql = "SELECT * FROM tblmenu WHERE idmenu=$id";
+
+                $row = $db->getALL($sql);
+
+                foreach ($row as $r) {
+                    $cart++;
+                }
+                    
+                }
+            }
+
+            return $cart;
+    }
+
 
 ?>
 
@@ -41,7 +63,8 @@
                 if (isset($_SESSION['pelanggan'])) {
                    echo '
                    <div class="float-right mt-4"><a href="?log=logout">logout</a></div>
-                   <div class="float-right mt-4 mr-4">Pelanggan : <a href="?f=home&m=beli">'.$_SESSION['pelanggan'].'</a></div>
+                   <div class="float-right mt-4 mr-4">Pelanggan : '.$_SESSION['pelanggan'].'</div>
+                   <div class="float-right mt-4 mr-4">Cart : (<a href="?f=home&m=beli">'.cart().'</a>)</div>
                    '; 
                 }else{
                     echo'

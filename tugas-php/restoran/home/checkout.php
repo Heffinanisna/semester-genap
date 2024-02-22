@@ -55,7 +55,16 @@
                 if ($key<> 'pelanggan' && $key>='pelanggan') {
                     $id = substr($key,1);
     
-                unset ($_SESSION['_'.$id.]);
+                $sql = "SELECT * FROM tblmenu WHERE idmenu=$id";
+
+                $row = $db->getALL($sql);
+
+                foreach ($row as $r) {
+                    $idmenu =$r['idmenu'];
+                    $harga = $r['harga'];
+                    $sql = "SELECT * FROM tblorderdetail VALUE ('',$idorder, $idmenu, $value, $harga)";
+                    $db->runSQL($sql);
+                }
                     
                 }
             }

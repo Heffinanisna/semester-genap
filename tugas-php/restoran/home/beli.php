@@ -2,7 +2,8 @@
 <?php
     if (isset($_GET['hapus'])) {
         $id=$_GET['hapus'];
-        unset($_SESSION['_'.$id];)
+        unset($_SESSION['_'.$id]);
+        header("location:?f=home&m=beli");
 
         
      }
