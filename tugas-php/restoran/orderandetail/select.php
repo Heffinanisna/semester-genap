@@ -2,13 +2,13 @@
 
 <div class="form-group">
     <form action="" method="post">
-        <div class="form-group w-50">
+        <div class="form-group w-50 float-left">
             <label for="">Tanggan Awal</label>
             <input type="date" name="tawal" required  class="form-control">
 
         </div>
 
-        <div class="form-group w-50">
+        <div class="form-group w-50 float-left">
             <label for="">Tanggan Akhir</label>
             <input type="date" name="takhir" required  class="form-control">
 
@@ -23,16 +23,10 @@
 
 <?php
 
-    if (isset($_POST['simpan'])) {
-        $tawal = $_POST['tawal'];
-        $takhir = $_POST['takhir'];
-        $sql = "SELECT * FROM vorderdetail WHERE tglorder BETWEEN '$tawal' AND '$takhir'";
-        echo $sql;
-    }
 
     $email=$_SESSION['pelanggan'];
     $jumlahdata = $db->rowCOUNT("SELECT idorderdetail FROM vorderdetail ");
-    $banyak = 4;
+    $banyak = 3;
 
     $halaman = ceil($jumlahdata / $banyak);
 
@@ -48,6 +42,14 @@
 
 
     $sql = "SELECT * FROM vorderdetail ORDER BY idorderdetail DESC LIMIT $mulai,$banyak";
+
+    if (isset($_POST['simpan'])) {
+        $tawal = $_POST['tawal'];
+        $takhir = $_POST['takhir'];
+        $sql = "SELECT * FROM vorderdetail WHERE tglorder BETWEEN '$tawal' AND '$takhir'";
+        echo $sql;
+    }
+
     $row = $db->getALL($sql;)
 
     $no=1=$mulai;
