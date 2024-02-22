@@ -16,9 +16,11 @@
         }else {
             insertOrderDetail($idorder);
         }
-        
 
-
+        kosongkanSession(){}
+        header ("location:?f=home&m=checkout");
+    }else {
+        info();
     }
 
     function idorder($id) {
@@ -44,26 +46,26 @@
         $db->runSQL($sql);
     }
 
-    function insertOrderDetail($idorder,){
-        global $db;
 
-        foreach ($_SESSION as $key => $value) {
-            if ($key<> 'pelanggan' && $key>='pelanggan') {
-                $id = substr($key,1);
-
-                $sql = "SELECT * FROM tblmenu WHERE idmenu = $id";
-
-                $row = $db->getALL($sql);
-
-                foreach ($row as $r) {
-                    $sql="INSERT INTO tblorderdetail VALUES ('',$idorder,$r)";
+    function kosongkanSession(){
+        function insertOrderDetail($idorder,){
+            global $db;
+    
+            foreach ($_SESSION as $key => $value) {
+                if ($key<> 'pelanggan' && $key>='pelanggan') {
+                    $id = substr($key,1);
+    
+                unset ($_SESSION['_'.$id.]);
+                    
                 }
-
-                echo '<pre>';
-                print_r($row);
-                echo '</pre>';
             }
+    
         }
+        
+    }
+    function info(){
+
+        echo "<h3>Terimakasih Sudah Berbelanja</h3>"
 
     }
 

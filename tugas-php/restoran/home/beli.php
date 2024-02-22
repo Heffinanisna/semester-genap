@@ -102,11 +102,27 @@
        echo '</table>';
     }
 
+
+
+   
+
    
 
     
 
 ?>
 
+<?php
+
+    if (!empty($total)) {
+        
+   
+
+?>
+
 <a class="btn btn-primary" href="?f=home&m=checkout&total=<?php echo 
 $total?>" role="button">CHECKOUT</a>
+
+<?php
+    }
+?>
