@@ -1,23 +1,42 @@
 <h3>Keranjang Belanja</h3>
 <?php
+    if (isset($_GET['hapus'])) {
+        $id=$_GET['hapus'];
+        unset($_SESSION['_'.$id];)
+
+        
+     }
 
     if (!isset($_SESSION['pelanggan'])) {
-        header ("location:?f=hume&m=login")
+        header ("location:?f=home&m=login")
+    }else {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+    
+            isi($id);
+            header("location:?f=home&m=beli");
+        }else {
+            keranjang();
+        }
+
     }
 
-    if (isset($_GET['id'])) {
-        $id = $_GET['id'];
 
-        echo $id;
 
-        echo '<br>;'
-
-       if (isset($_SESSION['_'.$id])) {
+   
+    function isi(){
+        if (isset($_SESSION['_'.$id])) {
             $_SESSION['_'.$id]++;
        }else{
         $_SESSION['_'.$id] =1;
        }
-       echo '
+
+    }
+    function keranjang(){
+
+        global $db;
+
+        echo '
        
        <table class="table table-bordered w-40">
                 <tr>
@@ -25,6 +44,7 @@
                     <th>Harga</th>
                     <th>Jumlah</th>
                     <th>Total</th>
+                    <th>Hapus</th>
                 </tr>
         <tbody>
        
@@ -43,6 +63,7 @@
                     echo '<td>'.$r['harga']'</td>';
                     echo '<td>'.$value'</td>';
                     echo '<td>'.$r['harga'] * $value. '</td>';
+                    echo '<td><a href="?f=home&m=beli&hapus='.$r['idmenu'].'">Hapus</a></td>';
                     echo '</tr>';
                 }
 
@@ -52,5 +73,7 @@
 
        echo '</table>';
     }
+
+    
 
 ?>

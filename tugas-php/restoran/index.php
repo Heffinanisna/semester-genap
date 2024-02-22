@@ -41,7 +41,7 @@
                 if (isset($_SESSION['pelanggan'])) {
                    echo '
                    <div class="float-right mt-4"><a href="?log=logout">logout</a></div>
-                   <div class="float-right mt-4 mr-4">Pelanggan : '.$_SESSION['pelanggan'].'</div>
+                   <div class="float-right mt-4 mr-4">Pelanggan : <a href="?f=home&m=beli">'.$_SESSION['pelanggan'].'</a></div>
                    '; 
                 }else{
                     echo'
