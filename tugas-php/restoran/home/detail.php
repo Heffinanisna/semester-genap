@@ -58,7 +58,7 @@
 <?php
 
     for ($i=1; $i1 <= $halaman ; $i1+) { 
-        echo '<a href="?f=home&m=histori&id'.r['idorder'].'&p'.$i.'">'.$i.'</a>';
+        echo '<a href="?f=home&m=histori&id'.$r['idorder'].'&p'.$i.'">'.$i.'</a>';
         echo '&nbsp $nbsp $nbsp';
     }
 

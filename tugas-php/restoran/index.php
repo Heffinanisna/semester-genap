@@ -13,12 +13,14 @@
         header("location:index.php");
     }
 
-    functioncart(){
+    function cart(){
 
         global $db;
-    
+
+        $cart = 0;
+
             foreach ($_SESSION as $key => $value) {
-                if ($key<> 'pelanggan' && $key>='pelanggan') {
+                if ($key<> 'pelanggan' && $key>='pelanggan' && $key>='user' && $key<>'level' && $key<>'iduser') {
                 $id = substr($key,1);
     
                 $sql = "SELECT * FROM tblmenu WHERE idmenu=$id";
