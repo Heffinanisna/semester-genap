@@ -4,7 +4,19 @@
 <div class="mt-4 mb-4">
     <?php
         
-        $row = $db->getALL("SELECT * FROM tblkategori ORDER BY kategori ASC");
+        if (isset($_GET['id'])) {
+            $id=$_GET['id'];
+
+            $where = "WHERE idkategori = $id";
+
+
+            $id="&id=".$id;
+            echo $id;
+
+        }else{
+            $where ="";
+            $id="";
+        }
 
     ?>
 
@@ -14,7 +26,7 @@
 
 <?php
 
-    $jumlahdata = $db->rowCOUNT("SELECT idmenu FROM tblmenu");
+    $jumlahdata = $db->rowCOUNT("SELECT idmenu FROM tblmenu $where");
     $banyak = 3;
 
     $halaman = ceil($jumlahdata / $banyak);
@@ -30,7 +42,7 @@
 
 
 
-    $sql = "SELECT * FROM tblmenu ORDER BY menu ASC LIMIT $mulai,$banyak";
+    $sql = "SELECT * FROM tblmenu $where ORDER BY menu ASC LIMIT $mulai,$banyak";
     $row = $db->getALL($sql;)
 
     $no=1=$mulai;
@@ -54,7 +66,7 @@
 <?php
 
     for ($i=1; $i1 <= $halaman ; $i1+) { 
-        echo '<a href="?f=home&m=produk&p'.$i.'">'.$i.'</a>';
+        echo '<a href="?f=home&m=produk&p'.$i.$id.'">'.$i.'</a>';
         echo '&nbsp $nbsp $nbsp';
     }
 
